@@ -9,21 +9,15 @@
 }:
 rustPlatform.buildRustPackage rec {
   pname = "jnv";
-  version = "0.1.1";
+  version = "0.1.2";
 
   src = fetchFromGitHub {
     owner = "ynqa";
     repo = "jnv";
     rev = "v${version}";
-    hash = "sha256-LN42UyXOStwgj/bbHl2MK1jTsDACTjDo+QaoZ9FzurA=";
+    hash = "sha256-22aoK1s8DhKttGGR9ouNDIWhYCv6dghT/jfAC0VX8Sw=";
   };
-
-  cargoLock = {
-    lockFile = ./Cargo.lock;
-  };
-  postPatch = ''
-    ln -s ${./Cargo.lock} Cargo.lock
-  '';
+  cargoHash = "sha256-CmupwWwopXpnPm8R17JVfAoGt4QEos5I+3qumDKEyM8=";
 
   nativeBuildInputs = [
     autoconf
@@ -40,7 +34,6 @@ rustPlatform.buildRustPackage rec {
     mainProgram = "jnv";
     homepage = "https://github.com/ynqa/jnv";
     license = with licenses; [ mit ];
-    maintainers = with maintainers; [ nealfennimore ];
-    platforms = platforms.unix;
+    maintainers = with maintainers; [ nealfennimore nshalman ];
   };
 }
